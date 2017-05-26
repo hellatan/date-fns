@@ -31,9 +31,10 @@ do
   cp -r "./src/$fnDir" "$dir/esm/"
 done
 
-# Copy esm/index.js and esm/fp/index.js
+# Copy esm indices
 cp ./src/esm/index.js "$dir/esm/index.js"
 cp ./src/esm/fp/index.js "$dir/esm/fp/index.js"
+cp ./src/esm/locale/index.js "$dir/esm/locale/index.js"
 
 # Copy docs
 cp dist/date_fns_docs.json "$dir/docs.json"
