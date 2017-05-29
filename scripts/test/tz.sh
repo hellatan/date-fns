@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# The script runs the test suite against every possible time zone offset.
+#
+# It's a part of the test process.
+
 printf "\n"
 
 for tz in UTC-12:00 UTC-11:00 UTC-10:00 UTC-09:30 UTC-09:00 \

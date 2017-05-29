@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# The script runs the test suite against every time zone
+# in the IANA database.
+#
+# It's a part of the test process.
+
 printf "\n"
 
 tz_array=(

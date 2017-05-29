@@ -1,3 +1,13 @@
+#!/usr/bin/env babel-node
+
+/**
+ * @file
+ * The script posts a tweet as @date_fns about the release
+ * with a link to the change log entry.
+ *
+ * It's a part of the release process.
+ */
+
 import fetch from 'node-fetch'
 import {execSync} from 'child_process'
 import formatDate from '../src/format'

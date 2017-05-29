@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#
+
 dir="$(pwd)/tmp/npm"
 env PACKAGE_OUTPUT_PATH="$dir" ./build_package.sh
 
