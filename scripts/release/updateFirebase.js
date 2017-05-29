@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node
 
 /**
  * @file
@@ -8,14 +8,13 @@
  * It's a part of the release process.
  */
 
-import firebase from 'firebase'
-import path from 'path'
-import fs from 'fs'
-import childProcess from 'child_process'
-import listLocales from '../_lib/listLocales'
-import countries from 'world-countries'
-
-// TODO: Read version from package.json
+const firebase = require('firebase')
+const path = require('path')
+const fs = require('fs')
+const childProcess = require('child_process')
+const listLocales = require('../_lib/listLocales')
+const countries = require('world-countries')
+const {version} = require('../../package.json')
 
 const {
   FIREBASE_EMAIL,
@@ -64,10 +63,6 @@ function generateLocale (tag, locale) {
 }
 
 function generateVersionData () {
-  const version = fs.readFileSync(path.join(process.cwd(), 'VERSION'))
-    .toString()
-    .replace(/[\s\n]/g, '')
-
   const tag = `v${version}`
 
   const commit = childProcess.execSync('git rev-parse HEAD')
@@ -149,15 +144,15 @@ firebase.auth()
   .then(() => {
     const data = generateVersionData()
 
-    const docsList = firebase.database().ref('/docs')
-    const docs = docsList.push()
+    const docsListRef = firebase.database().ref('/docs')
+    const docsRef = docsListRef.push()
 
-    const versionList = firebase.database().ref('/versions')
-    const version = versionList.push()
+    const versionListRef = firebase.database().ref('/versions')
+    const versionRef = versionListRef.push()
 
     return Promise.all([
-      docs.set(generateDocs(data)),
-      version.set(generateVersion(data, docs.key))
+      docsRef.set(generateDocs(data)),
+      versionRef.set(generateVersion(data, docsRef.key))
     ])
   })
   .then(() => {

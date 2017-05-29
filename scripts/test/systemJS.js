@@ -1,4 +1,4 @@
-#!/usr/bin/env babel-node
+#!/usr/bin/env node
 
 /**
  * @file
@@ -7,11 +7,11 @@
  * It's a part of the test process.
  */
 
-import listFns from '../_lib/listFns'
-import listFPFns from '../_lib/listFPFns'
-import listLocales from '../_lib/listLocales'
-import SystemJS from 'systemjs'
-import path from 'path'
+const listFns = require('../_lib/listFns')
+const listFPFns = require('../_lib/listFPFns')
+const listLocales = require('../_lib/listLocales')
+const SystemJS = require('systemjs')
+const path = require('path')
 
 const pluginPath = path.join(
   process.cwd(),

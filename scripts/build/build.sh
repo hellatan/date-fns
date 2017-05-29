@@ -6,7 +6,7 @@
 
 set -e
 
-./docs.js
-./fp.js
-./typings.js
-./indices.js
+./scripts/build/docs.js
+./scripts/build/fp.js
+./scripts/build/typings.js
+./scripts/build/indices.js

@@ -1,17 +1,20 @@
 #!/bin/bash
 
+# The script builds the package and publish it to npm.
+#
+# It's the entry point for the release process.
+
 set -e
 
 PACKAGE_PATH="$(pwd)/../../tmp/package"
-./writeVersion.js
+./scripts/release/writeVersion.js
 
-env PACKAGE_OUTPUT_PATH="$PACKAGE_PATH" ../build/package.sh
+env PACKAGE_OUTPUT_PATH="$PACKAGE_PATH" ./scripts/build/package.sh
 
 echo "//registry.npmjs.org/:_authToken=$NPM_KEY" > ~/.npmrc
-cd "$PACKAGE_PATH"
-npm publish
-TODO
-cd -
+cd "$PACKAGE_PATH" || exit 1
+npm publish
+cd - || exit
 
-./updateFirebase.js
-./tweet.js
+./scripts/release/updateFirebase.js
+./scripts/release/tweet.js
